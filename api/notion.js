@@ -23,7 +23,7 @@ export default async function handler(req, res) {
       const { title, url, category, pubDate } = req.body || {};
 
       const properties = {
-        Name: { title: [{ text: { content: title || '' } }] },
+        タイトル: { title: [{ text: { content: title || '' } }] },
       };
       if (url) properties['URL'] = { url };
       if (category) properties['カテゴリ'] = { select: { name: category } };
