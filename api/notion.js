@@ -8,8 +8,15 @@ export default async function handler(req, res) {
   }
 
   const notionKey = process.env.NOTION_KEY;
-  const dbId = req.query.db;
+  const dbId = req.query.db || process.env.NOTION_DB_ID;
   const action = req.query.action;
+
+  if (!notionKey) {
+    return res.status(500).json({ error: 'NOTION_KEY environment variable is not set' });
+  }
+  if (!dbId) {
+    return res.status(400).json({ error: 'Database ID is missing. Set NOTION_DB_ID env var or pass ?db=...' });
+  }
 
   try {
     if (action === 'create') {
