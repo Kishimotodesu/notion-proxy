@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  const notionKey = req.headers['x-notion-key'];
+  const notionKey = process.env.NOTION_KEY;
   const dbId = req.query.db;
   const action = req.query.action;
 
